@@ -1,0 +1,51 @@
+name: sakura
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: 0 2 * * *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install JDK
+      run: |
+        sudo apt update && \
+        sudo apt install openjdk-8-jdk
+        
+    - name: Checkin
+      run: |
+        user='${{ secrets.USER }}'
+        pwd='${{ secrets.PWD }}'
+        
+        
+        user_list=()
+        pwd_list=()
+        IFS=" "
+        for u in ${user[*]}
+        do
+        user_list[${#user_list[*]}]=${u}
+        done
+        for p in ${pwd[*]}
+        do
+        pwd_list[${#pwd_list[*]}]=${p}
+        done
+        user_num=${#user_list[*]}
+        pwd_num=${#pwd_list[*]}
+        if [ $user_num != $pwd_num ];then
+        echo "账号和密码个数不对应"
+        exit 1
+        else
+        echo "共有 $user_num 个账号，即将开始签到"
+        fi
+        for ((i=0;i<$user_num;i++))
+        do
+        java -Xms10m -Xmx10m -jar sakura-1.0.jar --email=${user_list[$i]} --password=${pwd_list[$i]}
+        done
