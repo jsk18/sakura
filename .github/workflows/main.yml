@@ -47,5 +47,5 @@ jobs:
         fi
         for ((i=0;i<$user_num;i++))
         do
-        java -Xms10m -Xmx100m -jar sakura-1.0.jar --email=${user_list[$i]} --password=${pwd_list[$i]}
+        java -Xms10m -Xmx20m -jar sakura-1.0.jar --email=${user_list[$i]} --password=${pwd_list[$i]}
         done
