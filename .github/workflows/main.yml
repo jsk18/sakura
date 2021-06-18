@@ -23,8 +23,8 @@ jobs:
         
     - name: Checkin
       run: |
-        user='${{ secrets.USER }}'
-        pwd='${{ secrets.PWD }}'
+        user='#{{ secrets.USER }}'
+        pwd='#{{ secrets.PWD }}'
         url='${{ secrets.URL }}'
         
         
@@ -49,7 +49,5 @@ jobs:
         fi
         for ((i=0;i<$user_num;i++))
         do
-        echo ${user_list[$i]}
-        echo ${pwd_list[$i]}
         java -Xms10m -Xmx10m -jar sakura-httpclient-1.0.jar ${user_list[$i]} ${pwd_list[$i]} ${url}
         done
