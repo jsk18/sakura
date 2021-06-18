@@ -31,13 +31,13 @@ jobs:
         user_list=()
         pwd_list=()
         IFS=" "
-        for u in ${user[*]}
+        for u in #{user[*]}
         do
-        user_list[${#user_list[*]}]=${u}
+        user_list[#{#user_list[*]}]=${u}
         done
-        for p in ${pwd[*]}
+        for p in #{pwd[*]}
         do
-        pwd_list[${#pwd_list[*]}]=${p}
+        pwd_list[#{#pwd_list[*]}]=${p}
         done
         user_num=${#user_list[*]}
         pwd_num=${#pwd_list[*]}
