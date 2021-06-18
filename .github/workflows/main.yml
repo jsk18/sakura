@@ -33,12 +33,14 @@ jobs:
         IFS=" "
         for u in ${user[*]}
         do
-        echo u
+        echo ${user[*]}
+        echo ${u}
         user_list[${#user_list[*]}]=${u}
         done
         for p in ${pwd[*]}
         do
-        echo p
+        echo ${p}
+        echo ${pwd[*]}
         pwd_list[${#pwd_list[*]}]=${p}
         done
         user_num=${#user_list[*]}
